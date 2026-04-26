@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>近くの図書館を探す</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📚 近くの図書館を探す</h1>
+      <p class="subtitle">
+        カーリルAPIを使って近くの図書館と蔵書を検索できます
+      </p>
+
+      <!-- 図書館検索セクション -->
+      <section class="card" id="section-library">
+        <h2>🏛️ 図書館を探す</h2>
+
+        <div class="tab-group">
+          <button class="tab active" data-tab="gps">📍 現在地から探す</button>
+          <button class="tab" data-tab="address">🔍 住所・地名から探す</button>
+        </div>
+
+        <!-- GPS -->
+        <div class="tab-content active" id="tab-gps">
+          <button class="btn btn-primary" id="btn-gps">
+            現在地を取得して検索
+          </button>
+          <p class="hint">ブラウザの位置情報許可が必要です</p>
+        </div>
+
+        <!-- 住所入力 -->
+        <div class="tab-content" id="tab-address">
+          <div class="input-row">
+            <input
+              type="text"
+              id="input-address"
+              placeholder="例: 東京都渋谷区、大阪府大阪市北区"
+            />
+            <button class="btn btn-primary" id="btn-address">検索</button>
+          </div>
+          <p class="hint">
+            都道府県名から始めると精度が上がります（例: 東京都渋谷区）
+          </p>
+        </div>
+
+        <div id="library-status" class="status"></div>
+        <div id="library-results"></div>
+      </section>
+
+      <!-- 蔵書検索セクション -->
+      <section class="card" id="section-book" style="display: none">
+        <h2>📖 蔵書を検索する</h2>
+        <p class="selected-info">
+          検索対象: <span id="selected-libraries-label">（未選択）</span>
+        </p>
+
+        <div class="input-row">
+          <input
+            type="text"
+            id="input-isbn"
+            placeholder="ISBNを入力 例: 9784088820125"
+          />
+          <button class="btn btn-secondary" id="btn-book-search">
+            蔵書検索
+          </button>
+        </div>
+        <p class="hint">
+          ISBNはバーコード下の13桁の数字です（ハイフンなしでも可）
+        </p>
+
+        <div id="book-status" class="status"></div>
+        <div id="book-results"></div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
